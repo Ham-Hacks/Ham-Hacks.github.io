@@ -6,22 +6,27 @@
   --background: #0d0d0d;
   --text: #d1f2ff;
   --light: #1a1a1a;
-  --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+  --glow: 0 0 5px #00ffe7, 0 0 10px #00ffe7, 0 0 20px #00ffe7;
   --font-main: 'Share Tech Mono', monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
+  font-family: var(--font-main);
   margin: 0;
   background-color: var(--background);
   color: var(--text);
-  font-family: var(--font-main);
   line-height: 1.6;
   overflow-x: hidden;
-  animation: fadeInBody 1s ease-in;
   position: relative;
+  animation: fadeInBody 1s ease-in;
+  background-image: radial-gradient(#0d0d0d 60%, #000000 100%);
 }
 
-/* Background logo */
+/* Logo background */
 body::before {
   content: "";
   position: fixed;
@@ -32,16 +37,17 @@ body::before {
   height: 600px;
   background: url('/images/logo.png') no-repeat center center;
   background-size: contain;
-  opacity: 0.06;
-  pointer-events: none;
+  opacity: 0.05;
   z-index: 0;
+  pointer-events: none;
   animation: pulseLogo 6s ease-in-out infinite;
   filter: drop-shadow(0 0 30px var(--primary));
 }
 
+/* Logo pulse */
 @keyframes pulseLogo {
   0%, 100% {
-    opacity: 0.06;
+    opacity: 0.04;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
@@ -50,26 +56,27 @@ body::before {
   }
 }
 
-/* Header styles */
+/* Header */
 header {
-  background: var(--light);
+  background: rgba(26, 26, 26, 0.9);
+  color: var(--primary);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--primary);
   box-shadow: var(--glow);
-  position: relative;
+  border-bottom: 2px solid var(--primary);
   z-index: 1;
+  position: relative;
 }
 
 header h1 a {
-  text-indent: -9999px;
   display: block;
   width: 150px;
   height: 50px;
   background: url('/images/logo.png') no-repeat center center;
   background-size: contain;
+  text-indent: -9999px;
 }
 
 /* Navigation */
@@ -78,7 +85,8 @@ nav a {
   text-decoration: none;
   margin-left: 1.5rem;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px #00ffe7;
 }
 
 nav a:hover {
@@ -93,24 +101,26 @@ main {
   z-index: 1;
 }
 
-/* Project Card */
+/* Projects */
 .project-card {
-  background: var(--light);
+  background: rgba(26, 26, 26, 0.8);
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--primary);
   box-shadow: var(--glow);
-  max-width: 400px;
+  max-width: 500px;
+  margin-top: 1rem;
 }
 
 .project-card img {
   width: 100%;
   border-radius: 8px;
+  box-shadow: var(--glow);
 }
 
 /* Footer */
 footer {
-  background: var(--light);
+  background: rgba(26, 26, 26, 0.9);
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
@@ -121,7 +131,7 @@ footer {
   z-index: 1;
 }
 
-/* Matrix Transition Overlay */
+/* Matrix burst effect */
 #matrix-transition {
   position: fixed;
   top: 0;
@@ -138,7 +148,8 @@ footer {
   white-space: pre;
   overflow: hidden;
   transition: opacity 0.3s ease;
-  padding: 1rem;
+  padding: 2rem;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
 }
 
 #matrix-transition.active {
@@ -146,7 +157,7 @@ footer {
   pointer-events: auto;
 }
 
-/* Body fade-in animation */
+/* Animations */
 @keyframes fadeInBody {
   from { opacity: 0; }
   to { opacity: 1; }
