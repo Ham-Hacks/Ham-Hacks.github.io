@@ -1,81 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HamHacks</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <!-- Matrix transition overlay -->
-  <div id="matrix-transition"></div>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-  <header>
-    <h1>
-      <a href="/">HamHacks</a>
-    </h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/projects">Projects</a>
-      <a href="/help">Help</a>
-      <a href="/contact">Contact</a>
-      <a href="/swap-shop">Swap Shop</a>
-      <a href="/buy">Buy</a>
-    </nav>
-  </header>
+:root {
+  --primary: #00ffe7;
+  --secondary: #00f7ff;
+  --background: #0d0d0d;
+  --text: #d1f2ff;
+  --light: #1a1a1a;
+  --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+  --font-main: 'Share Tech Mono', monospace;
+}
 
-  <main>
-    <h2>Welcome to HamHacks!</h2>
-    <p>Homemade Hardware, Hacks and Code.</p>
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  animation: fadeInBody 1s ease-in;
+  position: relative;
+}
 
-    <section class="projects">
-      <h3>Featured Project</h3>
-      <div class="project-card">
-        <a href="/projects/node-mcu-oled.html">
-          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" style="max-width: 200px; border-radius: 8px;">
-          <h4>NodeMCU with Built-in OLED</h4>
-        </a>
-        <p>A deep dive into using the NodeMCU board with its onboard OLED screen. Example code included!</p>
-      </div>
-    </section>
-  </main>
+/* Background logo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: url('/images/logo.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulseLogo 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px var(--primary));
+}
 
-  <footer>
-    <p>&copy; 2025 HamHacks</p>
-  </footer>
+@keyframes pulseLogo {
+  0%, 100% {
+    opacity: 0.06;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.12;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
 
-  <!-- JavaScript for Matrix Transition -->
-  <script>
-    const transition = document.getElementById("matrix-transition");
-    const navLinks = document.querySelectorAll("nav a");
+/* Header styles */
+header {
+  background: var(--light);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary);
+  box-shadow: var(--glow);
+  position: relative;
+  z-index: 1;
+}
 
-    function matrixBurst() {
-      const lines = 25;
-      let code = "";
-      const chars = "01";
-      for (let i = 0; i < lines; i++) {
-        let line = "";
-        for (let j = 0; j < 80; j++) {
-          line += chars[Math.floor(Math.random() * chars.length)];
-        }
-        code += line + "\n";
-      }
-      return code;
-    }
+header h1 a {
+  text-indent: -9999px;
+  display: block;
+  width: 150px;
+  height: 50px;
+  background: url('/images/logo.png') no-repeat center center;
+  background-size: contain;
+}
 
-    navLinks.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const url = link.getAttribute("href");
-        transition.innerText = matrixBurst();
-        transition.classList.add("active");
+/* Navigation */
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
 
-        setTimeout(() => {
-          window.location.href = url;
-        }, 700); // Duration of effect
-      });
-    });
-  </script>
-</body>
-</html>
+nav a:hover {
+  color: var(--primary);
+  text-shadow: var(--glow);
+}
+
+/* Main content */
+main {
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Project Card */
+.project-card {
+  background: var(--light);
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+  box-shadow: var(--glow);
+  max-width: 400px;
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Footer */
+footer {
+  background: var(--light);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  border-top: 1px solid var(--primary);
+  text-shadow: var(--glow);
+  position: relative;
+  z-index: 1;
+}
+
+/* Matrix Transition Overlay */
+#matrix-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 14px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  white-space: pre;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+
+#matrix-transition.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Body fade-in animation */
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
