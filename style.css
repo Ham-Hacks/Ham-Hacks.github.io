@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
-  --primary: #00ffe7; /* neon blue-green */
-  --secondary: #00f7ff; /* alt neon */
-  --background: #0d0d0d; /* deep black */
-  --text: #d1f2ff; /* soft white-blue */
-  --light: #1a1a1a;
-  --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+  --primary: #00ff00; /* retro green */
+  --secondary: #39ff14; /* neon lime */
+  --background: #000000; /* true black */
+  --text: #00ff99; /* terminal mint */
+  --light: #111111;
+  --glow: 0 0 5px var(--primary), 0 0 10px var(--secondary), 0 0 20px var(--primary);
   --font-main: 'Share Tech Mono', monospace;
 }
 
@@ -15,41 +15,40 @@ body {
   margin: 0;
   background-color: var(--background);
   color: var(--text);
-  line-height: 1.6;
   overflow-x: hidden;
   position: relative;
-  animation: fadeInBody 1s ease-in;
+  animation: fadeInBody 1.2s ease-in;
+  text-shadow: var(--glow);
 }
 
-/* Background logo image (centered, animated, gentle fade) */
+/* Massive pulsing logo background */
 body::before {
   content: "";
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: url('../images/logo.png') no-repeat center center;
+  width: 700px;
+  height: 700px;
+  background: url('/images/logo.png') no-repeat center center;
   background-size: contain;
-  opacity: 0.06;
-  z-index: 0;
+  opacity: 0.05;
+  animation: pulseLogo 8s ease-in-out infinite;
   pointer-events: none;
-  animation: pulseLogo 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px var(--primary));
+  z-index: 0;
+  filter: drop-shadow(0 0 60px var(--primary));
 }
 
 @keyframes pulseLogo {
   0%, 100% {
-    opacity: 0.06;
+    opacity: 0.04;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: 0.12;
-    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.1;
+    transform: translate(-50%, -50%) scale(1.04);
   }
 }
-
 
 /* Header */
 header {
@@ -59,23 +58,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: var(--glow);
   border-bottom: 2px solid var(--primary);
-  z-index: 1;
   position: relative;
+  z-index: 2;
 }
 
 header h1 {
   margin: 0;
+  font-size: 1.4rem;
 }
 
 header h1 a {
-  display: block;
-  width: 150px;
-  height: 50px;
-  background: url('images/logo.png') no-repeat center center;
-  background-size: contain;
-  text-indent: -9999px; /* Hides text but keeps it accessible */
+  color: var(--primary);
+  text-decoration: none;
 }
 
 /* Navigation */
@@ -84,7 +79,7 @@ nav a {
   text-decoration: none;
   margin-left: 1rem;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: all 0.2s ease-in;
 }
 
 nav a:hover {
@@ -92,11 +87,11 @@ nav a:hover {
   text-shadow: var(--glow);
 }
 
-/* Main content */
+/* Main */
 main {
   padding: 2rem;
-  position: relative;
   z-index: 1;
+  position: relative;
 }
 
 /* Footer */
@@ -107,56 +102,22 @@ footer {
   font-size: 0.9rem;
   color: var(--secondary);
   border-top: 1px solid var(--primary);
-  text-shadow: var(--glow);
   z-index: 1;
   position: relative;
+  text-shadow: var(--glow);
 }
 
-/* Tab styles */
+/* Tabs */
 .tab-container {
   margin-top: 2rem;
 }
 
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 2px solid var(--primary);
 }
 
 .tab-button {
   background: transparent;
-  border: none;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--text);
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease-in-out;
-}
-
-.tab-button:hover,
-.tab-button.active {
-  border-bottom: 3px solid var(--primary);
-  color: var(--primary);
-  text-shadow: var(--glow);
-}
-
-.tab-content {
-  display: none;
-  padding: 1.5rem 0;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInBody {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+  border
