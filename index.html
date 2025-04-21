@@ -7,38 +7,75 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+  <!-- Matrix transition overlay -->
   <div id="matrix-transition"></div>
 
-
-  <!-- Header -->
   <header>
     <h1>
       <a href="/">HamHacks</a>
     </h1>
-    <nav class="tabs">
-      <button class="tab-button active" data-tab="home">Home</button>
-      <button class="tab-button" data-tab="about">About</button>
-      <button class="tab-button" data-tab="projects">Projects</button>
-      <button class="tab-button" data-tab="help">Help</button>
-      <button class="tab-button" data-tab="contact">Contact</button>
-      <button class="tab-button" data-tab="swap">Swap Shop</button>
-      <button class="tab-button" data-tab="buy">Buy</button>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+      <a href="/help">Help</a>
+      <a href="/contact">Contact</a>
+      <a href="/swap-shop">Swap Shop</a>
+      <a href="/buy">Buy</a>
     </nav>
   </header>
 
-  <main class="tab-container">
-    <section id="home" class="tab-content active">
-      <h2>Welcome to HamHacks!</h2>
-      <p>Homemade Hardware, Hacks and Code.</p>
-    </section>
+  <main>
+    <h2>Welcome to HamHacks!</h2>
+    <p>Homemade Hardware, Hacks and Code.</p>
 
-    <section id="about" class="tab-content">
-      <h2>About</h2>
-      <p>We're into DIY electronics, microcontrollers, and clever code hacks.</p>
-    </section>
-
-    <section id="projects" class="tab-content">
-      <h2>Projects</h2>
+    <section class="projects">
+      <h3>Featured Project</h3>
       <div class="project-card">
         <a href="/projects/node-mcu-oled.html">
-          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMC_
+          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" style="max-width: 200px; border-radius: 8px;">
+          <h4>NodeMCU with Built-in OLED</h4>
+        </a>
+        <p>A deep dive into using the NodeMCU board with its onboard OLED screen. Example code included!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
+
+  <!-- JavaScript for Matrix Transition -->
+  <script>
+    const transition = document.getElementById("matrix-transition");
+    const navLinks = document.querySelectorAll("nav a");
+
+    function matrixBurst() {
+      const lines = 25;
+      let code = "";
+      const chars = "01";
+      for (let i = 0; i < lines; i++) {
+        let line = "";
+        for (let j = 0; j < 80; j++) {
+          line += chars[Math.floor(Math.random() * chars.length)];
+        }
+        code += line + "\n";
+      }
+      return code;
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const url = link.getAttribute("href");
+        transition.innerText = matrixBurst();
+        transition.classList.add("active");
+
+        setTimeout(() => {
+          window.location.href = url;
+        }, 700); // Duration of effect
+      });
+    });
+  </script>
+</body>
+</html>
