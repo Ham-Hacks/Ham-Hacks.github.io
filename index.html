@@ -4,40 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HamHacks</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/styles/style.css" />
 </head>
 <body>
-  <!-- Matrix transition overlay -->
-  <div id="matrix-transition"></div>
+  <!-- Matrix transition canvas -->
+  <canvas id="matrix-canvas"></canvas>
 
   <header>
-    <h1>
-      <a href="/">HamHacks</a>
-    </h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/projects">Projects</a>
-      <a href="/help">Help</a>
-      <a href="/contact">Contact</a>
-      <a href="/swap-shop">Swap Shop</a>
-      <a href="/buy">Buy</a>
+    <h1><a href="/">HamHacks</a></h1>
+    <nav class="tabs">
+      <button class="tab-button active" data-tab="home">Home</button>
+      <button class="tab-button" data-tab="about">About</button>
+      <button class="tab-button" data-tab="projects">Projects</button>
+      <button class="tab-button" data-tab="contact">Contact</button>
     </nav>
   </header>
 
   <main>
-    <h2>Welcome to HamHacks!</h2>
-    <p>Homemade Hardware, Hacks and Code.</p>
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p>Homemade Hardware, Hacks and Code.</p>
+    </section>
 
-    <section class="projects">
-      <h3>Featured Project</h3>
+    <section id="about" class="tab-content">
+      <h2>About</h2>
+      <p>We love building hardware, hacking electronics, and sharing code.</p>
+    </section>
+
+    <section id="projects" class="tab-content">
+      <h2>Projects</h2>
       <div class="project-card">
-        <a href="/projects/node-mcu-oled.html">
-          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED">
-          <h4>NodeMCU with Built-in OLED</h4>
-        </a>
+        <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED">
+        <h4>NodeMCU with Built-in OLED</h4>
         <p>A deep dive into using the NodeMCU board with its onboard OLED screen. Example code included!</p>
       </div>
+    </section>
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p>Get in touch via email or social media. We’re always building!</p>
     </section>
   </main>
 
@@ -45,37 +50,6 @@
     <p>&copy; 2025 HamHacks</p>
   </footer>
 
-  <!-- Matrix Burst Script -->
-  <script>
-    const transition = document.getElementById("matrix-transition");
-    const navLinks = document.querySelectorAll("nav a");
-
-    function matrixBurst() {
-      const lines = 20;
-      let code = "";
-      const chars = "01";
-      for (let i = 0; i < lines; i++) {
-        let line = "";
-        for (let j = 0; j < 80; j++) {
-          line += chars[Math.floor(Math.random() * chars.length)];
-        }
-        code += line + "\n";
-      }
-      return code;
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const url = link.getAttribute("href");
-        transition.innerText = matrixBurst();
-        transition.classList.add("active");
-
-        setTimeout(() => {
-          window.location.href = url;
-        }, 700);
-      });
-    });
-  </script>
+  <script src="/scripts/matrix.js"></script>
 </body>
 </html>
