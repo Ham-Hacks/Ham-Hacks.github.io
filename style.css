@@ -1,161 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- Matrix transition overlay -->
+  <div id="matrix-transition"></div>
 
-:root {
-  --primary: #00ffe7;
-  --secondary: #00f7ff;
-  --background: #0d0d0d;
-  --text: #d1f2ff;
-  --light: #1a1a1a;
-  --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
-  --font-main: 'Share Tech Mono', monospace;
-}
+  <header>
+    <h1>
+      <a href="/">HamHacks</a>
+    </h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+      <a href="/help">Help</a>
+      <a href="/contact">Contact</a>
+      <a href="/swap-shop">Swap Shop</a>
+      <a href="/buy">Buy</a>
+    </nav>
+  </header>
 
-body {
-  font-family: var(--font-main);
-  margin: 0;
-  background-color: var(--background);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-  position: relative;
-  animation: fadeInBody 1s ease-in;
-}
+  <main>
+    <h2>Welcome to HamHacks!</h2>
+    <p>Homemade Hardware, Hacks and Code.</p>
 
-/* Large animated logo in background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: url('/images/logo.png') no-repeat center center;
-  background-size: contain;
-  opacity: 0.06;
-  z-index: 0;
-  pointer-events: none;
-  animation: pulseLogo 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px var(--primary));
-}
+    <section class="projects">
+      <h3>Featured Project</h3>
+      <div class="project-card">
+        <a href="/projects/node-mcu-oled.html">
+          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" style="max-width: 200px; border-radius: 8px;">
+          <h4>NodeMCU with Built-in OLED</h4>
+        </a>
+        <p>A deep dive into using the NodeMCU board with its onboard OLED screen. Example code included!</p>
+      </div>
+    </section>
+  </main>
 
-@keyframes pulseLogo {
-  0%, 100% {
-    opacity: 0.06;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.12;
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
 
-/* Header */
-header {
-  background: var(--light);
-  color: var(--primary);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--glow);
-  border-bottom: 2px solid var(--primary);
-  z-index: 1;
-  position: relative;
-}
+  <!-- JavaScript for Matrix Transition -->
+  <script>
+    const transition = document.getElementById("matrix-transition");
+    const navLinks = document.querySelectorAll("nav a");
 
-header h1 {
-  margin: 0;
-}
+    function matrixBurst() {
+      const lines = 25;
+      let code = "";
+      const chars = "01";
+      for (let i = 0; i < lines; i++) {
+        let line = "";
+        for (let j = 0; j < 80; j++) {
+          line += chars[Math.floor(Math.random() * chars.length)];
+        }
+        code += line + "\n";
+      }
+      return code;
+    }
 
-header h1 a {
-  display: block;
-  width: 150px;
-  height: 50px;
-  background: url('/images/logo.png') no-repeat center center;
-  background-size: contain;
-  text-indent: -9999px;
-}
+    navLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const url = link.getAttribute("href");
+        transition.innerText = matrixBurst();
+        transition.classList.add("active");
 
-/* Navigation */
-nav a {
-  color: var(--text);
-  text-decoration: none;
-  margin-left: 1rem;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: var(--primary);
-  text-shadow: var(--glow);
-}
-
-/* Main content */
-main {
-  padding: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* Footer */
-footer {
-  background: var(--light);
-  padding: 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--secondary);
-  border-top: 1px solid var(--primary);
-  text-shadow: var(--glow);
-  z-index: 1;
-  position: relative;
-}
-
-/* Tab system (if needed later) */
-.tab-container {
-  margin-top: 2rem;
-}
-
-.tabs {
-  display: flex;
-  border-bottom: 2px solid var(--primary);
-}
-
-.tab-button {
-  background: transparent;
-  border: none;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--text);
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease-in-out;
-}
-
-.tab-button:hover,
-.tab-button.active {
-  border-bottom: 3px solid var(--primary);
-  color: var(--primary);
-  text-shadow: var(--glow);
-}
-
-.tab-content {
-  display: none;
-  padding: 1.5rem 0;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInBody {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+        setTimeout(() => {
+          window.location.href = url;
+        }, 700); // Duration of effect
+      });
+    });
+  </script>
+</body>
+</html>
