@@ -33,7 +33,7 @@
       <h3>Featured Project</h3>
       <div class="project-card">
         <a href="/projects/node-mcu-oled.html">
-          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" style="max-width: 200px; border-radius: 8px;">
+          <img src="/images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED">
           <h4>NodeMCU with Built-in OLED</h4>
         </a>
         <p>A deep dive into using the NodeMCU board with its onboard OLED screen. Example code included!</p>
@@ -45,13 +45,13 @@
     <p>&copy; 2025 HamHacks</p>
   </footer>
 
-  <!-- JavaScript for Matrix Transition -->
+  <!-- Matrix Burst Script -->
   <script>
     const transition = document.getElementById("matrix-transition");
     const navLinks = document.querySelectorAll("nav a");
 
     function matrixBurst() {
-      const lines = 25;
+      const lines = 20;
       let code = "";
       const chars = "01";
       for (let i = 0; i < lines; i++) {
@@ -73,7 +73,7 @@
 
         setTimeout(() => {
           window.location.href = url;
-        }, 700); // Duration of effect
+        }, 700);
       });
     });
   </script>
