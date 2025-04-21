@@ -1,3 +1,16 @@
+<script>
+  // Email obfuscation
+  const user = 'hamhacks';
+  const domain = 'hotmail.com';
+  const emailLink = document.getElementById('email-link');
+
+  if (emailLink) {
+    const email = `${user}@${domain}`;
+    emailLink.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+  }
+</script>
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tab-button");
   const contents = document.querySelectorAll(".tab-content");
