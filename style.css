@@ -130,6 +130,19 @@ footer {
   position: relative;
   z-index: 1;
 }
+/* Hide canvas initially, fade in/out */
+#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
 
 /* Matrix burst effect */
 #matrix-transition {
