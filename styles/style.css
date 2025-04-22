@@ -1,0 +1,77 @@
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #0ff;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden;
+}
+
+h1, h2, p {
+  text-align: center;
+}
+
+a {
+  color: #0ff;
+  text-decoration: none;
+}
+
+canvas#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.background-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80vmin;
+  height: 80vmin;
+  background-image: url('../images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
+  opacity: 0.04;
+  animation: glow 5s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes glow {
+  from { opacity: 0.02; }
+  to { opacity: 0.06; }
+}
+
+nav.tabs {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.tab-button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #0ff;
+  border-radius: 5px;
+  color: #0ff;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background-color: #0ff;
+  color: #000;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+}
+
+.tab-content.active {
+  display: block;
+}
