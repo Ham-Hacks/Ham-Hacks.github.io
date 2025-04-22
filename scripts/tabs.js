@@ -7,7 +7,7 @@ document.querySelectorAll('.tab-button').forEach(button => {
     // Get the tab ID from the button
     const tabId = button.getAttribute('data-tab');
 
-    // Deactivate all tabs and contents
+    // Deactivate all tabs and their contents
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
