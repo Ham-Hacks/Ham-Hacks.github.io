@@ -30,17 +30,28 @@ canvas#matrix-canvas {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 80vmin;
-  height: 80vmin;
-  background-image: url('../images/logo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   transform: translate(-50%, -50%);
-  opacity: 0.04;
-  animation: glow 5s ease-in-out infinite alternate;
-  z-index: -1;
+  width: 70vmin;
+  height: 70vmin;
+  background: url('../assets/logo.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.05;
+  animation: glowPulse 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
 }
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.05;
+    filter: drop-shadow(0 0 10px #00f2ff);
+  }
+  50% {
+    opacity: 0.08;
+    filter: drop-shadow(0 0 20px #00f2ff);
+  }
+}
+
 
 @keyframes glow {
   from { opacity: 0.02; }
