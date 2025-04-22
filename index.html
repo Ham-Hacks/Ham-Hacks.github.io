@@ -42,24 +42,6 @@
 <p>Stay curious — and hack on ⚡</p>
     </section>
 
- <section id="projects" class="tab-content">
-  <h2>Featured Project</h2>
-  <div class="project-card">
-    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" />
-    <div class="project-info">
-      <h3>NodeMCU with Built-in OLED</h3>
-      <p>
-        This project explores the integration of an onboard OLED display with a NodeMCU ESP8266 board. It's perfect for
-        compact IoT interfaces, debugging on the go, or displaying system status without extra hardware.
-      </p>
-      <p>
-        You’ll learn how to use the <code>U8g2</code> library for OLED control, send sensor data to the screen, and
-        customize fonts and graphics. Wiring is minimal since the OLED is already integrated!
-      </p>
-      <p><strong>Skills used:</strong> ESP8266 programming, I2C protocol, embedded graphics</p>
-    </div>
-  </div>
-</section>
 
 
     <section id="contact" class="tab-content">
@@ -78,7 +60,46 @@
   </footer>
 
   <script src="./scripts/matrix.js"></script>
-  <script src="./scripts/tabs.js"></script>
+  <script src="./scripts/tabs.js"></script><section id="projects" class="tab-content">
+  <h2>Featured Project</h2>
+  <div class="project-card">
+    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" />
+    <div class="project-info">
+      <h3>NodeMCU with Built-in OLED</h3>
+      <p>
+        This little build uses a NodeMCU ESP8266 board with an integrated OLED — no wiring needed. It’s super tidy for debugging,
+        or even showing sensor readouts or custom messages. Perfect starter board if you're just dipping your toes into IoT or microcontrollers.
+      </p>
+      <p>
+        I used the <code>U8g2</code> library which makes writing to the screen really straightforward. The trickiest part? Getting the screen to respond! But hey — after a few rounds of trial and error, it fired up like a charm.
+      </p>
+      <pre><code>
+// Example code to get you going
+#include <Wire.h>
+#include <U8g2lib.h>
+
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
+void setup() {
+  u8g2.begin();
+}
+
+void loop() {
+  u8g2.clearBuffer();
+  u8g2.setFont(u8g2_font_ncenB08_tr);
+  u8g2.drawStr(0,24,"Hello from HamHacks!");
+  u8g2.sendBuffer();
+  delay(1000);
+}
+      </code></pre>
+      <p>
+        Keep your connections clean and don’t forget: sometimes the SDA/SCL pins are swapped depending on the board version.
+        Been there, fixed that.
+      </p>
+    </div>
+  </div>
+</section>
+
   <script>
     // Email obfuscation
     const user = 'hamhacks';
