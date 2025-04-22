@@ -114,32 +114,34 @@
     <!-- Projects Tab -->
     <section id="projects" class="tab-content">
       <h2>Projects</h2>
-
-      <!-- Collapsible Project Sections -->
       <div class="project-section">
-
-        <button class="collapsible">⭐ Featured Project</button>
+        <button class="collapsible">⭐ Featured Project: NodeMCU + OLED</button>
         <div class="content">
           <div class="project-card">
             <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" style="max-width: 400px;" />
             <div class="project-info">
               <h4>NodeMCU with Built-in OLED</h4>
-              <p>ESP8266 board + built-in OLED = tidy setup with zero wiring.</p>
+              <p>Neat little NodeMCU ESP8266 board with an OLED baked in — no jumper wires, just vibes. Here's how to make it work.</p>
+              <p><strong>OLED Pinout:</strong></p>
+              <ul>
+                <li>SDA = GPIO12 (D6)</li>
+                <li>SCL = GPIO14 (D5)</li>
+              </ul>
+              <p><strong>Address:</strong> <code>0x3C</code> (run scanner below to verify)</p>
 
+              <h5>I2C Scanner</h5>
               <div class="code-block">
                 <button class="copy-btn">Copy</button>
-<pre><code>
-// I2C Scanner
-#include &lt;Wire.h&gt;
+<pre><code>#include &lt;Wire.h&gt;
 
 void setup() {
-  Wire.begin();
+  Wire.begin(12, 14); // SDA, SCL
   Serial.begin(115200);
-  Serial.println("Scanning...");
+  Serial.println("Scanning for I2C devices...");
   for (byte i = 1; i &lt; 127; i++) {
     Wire.beginTransmission(i);
     if (Wire.endTransmission() == 0) {
-      Serial.print("Found I2C device at 0x");
+      Serial.print("Found device at 0x");
       Serial.println(i, HEX);
       delay(500);
     }
@@ -147,12 +149,21 @@ void setup() {
 }
 
 void loop() {}
-///////////////////////////////////////
+</code></pre>
+              </div>
 
-// Display
+              <h5>Hello OLED Example</h5>
+              <div class="code-block">
+                <button class="copy-btn">Copy</button>
+<pre><code>#include &lt;Wire.h&gt;
 #include &lt;U8g2lib.h&gt;
 
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(
+  U8G2_R0,      // rotation
+  U8X8_PIN_NONE,// reset
+  14,           // clock (D5)
+  12            // data  (D6)
+);
 
 void setup() {
   u8g2.begin();
@@ -167,11 +178,13 @@ void loop() {
 }
 </code></pre>
               </div>
-              <p>If nothing shows up — run the I2C scanner (top bit). It'll help you tweak the constructor if needed. Done ✅</p>
+
+              <p>Done. Clean. Bright. And no tangled breadboard monsters 🧪</p>
             </div>
           </div>
         </div>
 
+        <!-- More Sections -->
         <button class="collapsible">🔩 Arduino</button>
         <div class="content"><p>Projects using UNO, Nano, and weird clones. Coming soon!</p></div>
 
@@ -221,7 +234,7 @@ void loop() {
       emailLink.innerHTML = `<a href="mailto:${email}">${email}</a>`;
     }
 
-    // Copy button
+    // Copy to clipboard
     document.querySelectorAll('.copy-btn').forEach(button => {
       button.addEventListener('click', () => {
         const code = button.nextElementSibling.innerText;
@@ -232,7 +245,7 @@ void loop() {
       });
     });
 
-    // Collapsible sections
+    // Collapsible project sections
     document.querySelectorAll(".collapsible").forEach(button => {
       button.addEventListener("click", () => {
         const content = button.nextElementSibling;
