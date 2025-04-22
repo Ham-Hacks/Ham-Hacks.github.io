@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minesweeper</title>
+  <style>
+    body {
+      background: black;
+      color: #0f0;
+      font-family: monospace;
+      text-align: center;
+      padding-top: 20px;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+    }
+    td {
+      width: 25px;
+      height: 25px;
+      border: 1px solid #0f0;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Minesweeper</h2>
+  <p style="color:#0f0;">Click cells to reveal. Avoid the 💣!</p>
+  <table id="board"></table>
+
+<script>
+  const board = document.getElementById('board');
+  const size = 8;
+  const mineCount = 10;
+  const grid = [];
+
+  function setup() {
+    for (let y = 0; y < size; y++) {
+      const row = [];
+      const tr = document.createElement('tr');
+      for (let x = 0; x < size; x++) {
+        const td = document.createElement('td');
+        td.dataset.x = x;
+        td.dataset.y = y;
+        td.onclick = () => reveal(x, y);
+        tr.appendChild(td);
+        row.push({ mine: false, revealed: false, td });
+      }
+      board.appendChild(tr);
+      grid.push(row);
+    }
+
+    let placed = 0;
+    while (placed < mineCount) {
+      const x = Math.floor(Math.random() * size);
+      const y = Math.floor(Math.random() * size);
+      if (!grid[y][x].mine) {
+        grid[y][x].mine = true;
+        placed++;
+      }
+    }
+  }
+
+  function reveal(x, y) {
+    const cell = grid[y][x];
+    if (cell.revealed) return;
+    cell.revealed = true;
+
+    if (cell.mine) {
+      cell.td.textContent = "💣";
+      cell.td.style.background = "#f00";
+      alert("Boom! Game over.");
+    } else {
+      let count = 0;
+      for (let j = -1; j <= 1; j++) {
+        for (let i = -1; i <= 1; i++) {
+          if (grid[y + j] && grid[y + j][x + i] && grid[y + j][x + i].mine) {
+            count++;
+          }
+        }
+      }
+      cell.td.textContent = count ? count : '';
+      cell.td.style.background = "#060";
+    }
+  }
+
+  setup();
+</script>
+</body>
+</html>
