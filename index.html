@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <h1><a href="#">HamHacks</a></h1>
+    <nav class="tabs">
+      <a href="#home" class="tab-button active" data-tab="home">Home</a>
+      <a href="#about" class="tab-button" data-tab="about">About</a>
+      <a href="#projects" class="tab-button" data-tab="projects">Projects</a>
+      <a href="#contact" class="tab-button" data-tab="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p>Homemade Hardware, Hacks and Code.</p>
+    </section>
+
+    <section id="about" class="tab-content">
+      <h2>About</h2>
+      <p>We love building hardware, hacking electronics, and sharing code.</p>
+    </section>
+
+    
+<section id="projects" class="tab-content">
+  <h2>Projects</h2>
+  <button class="accordion">Arduino</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP8266</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP32</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP32 CAM</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  
+<button class="accordion">Raspberry Pi</button>
+<div class="panel">
+  <h3>Blinking an LED using GPIO</h3>
+  <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;" />
+  <p>This simple project uses the RPi.GPIO library to blink an LED connected to GPIO pin 17 on a Raspberry Pi.</p>
+  <pre><code id="code-snippet">import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)
+        time.sleep(1)
+        GPIO.output(17, GPIO.LOW)
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()</code></pre>
+  <button onclick="copyCode()" style="margin-top: 0.5em;">Copy Code</button>
+</div>
+
+<script>
+function copyCode() {
+  const code = document.getElementById('code-snippet').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    alert("Code copied to clipboard!");
+  });
+}
+</script>
+
+</section>
+
+<script>
+  const accordions = document.querySelectorAll('.accordion');
+  accordions.forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('active');
+      const panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  });
+</script>
+
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p>Get in touch via email or social media. We’re always building!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
+
+  <script src="./scripts/matrix.js"></script>
+  <script src="./scripts/tabs.js"></script>
+</body>
+</html>
