@@ -1,50 +1,118 @@
-<!-- Projects Tab -->
-<section id="projects" class="tab-content">
-  <h2>Featured Project</h2>
-  <div class="project-card">
-    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" />
-    <div class="project-info">
-      <h3>NodeMCU with Built-in OLED</h3>
-      <p>This build uses a NodeMCU ESP8266 board with an integrated OLED — no wiring needed! Super neat for quick debugging, sensor readouts, or just seeing if your code is alive.</p>
-      <p>Here’s how I brought it to life:</p>
-      <ol>
-        <li>Install the <code>U8g2</code> library in Arduino IDE.</li>
-        <li>Upload the code below — it includes an I2C scanner and a "Hello" message.</li>
-        <li>Check your Serial Monitor for I2C feedback, then enjoy the display!</li>
-      </ol>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <style>
+    /* Add this in case it's not in your CSS yet */
+    h1, h2, h3 {
+      text-align: center;
+    }
 
-      <div class="code-block">
-        <button class="copy-btn">Copy</button>
-        <pre><code id="code-sample">
-// OLED Hello World + I2C Scanner for NodeMCU
+    .code-block {
+      background-color: #111;
+      color: #0f0;
+      padding: 1em;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-family: monospace;
+      position: relative;
+    }
 
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #333;
+      color: #0f0;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .project-image {
+      display: block;
+      margin: 1em auto;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix rain canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <h1><a href="#">HamHacks</a></h1>
+    <nav class="tabs" style="text-align: center;">
+      <a href="#home" class="tab-button active" data-tab="home">Home</a>
+      <a href="#about" class="tab-button" data-tab="about">About</a>
+      <a href="#projects" class="tab-button" data-tab="projects">Projects</a>
+      <a href="#contact" class="tab-button" data-tab="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home Tab -->
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p style="text-align: center;">Homemade Hardware, Hacks and Code.</p>
+    </section>
+
+    <!-- About Tab -->
+    <section id="about" class="tab-content">
+      <h2>About</h2>
+      <p>Hey there 👋 — welcome to HamHacks!</p>
+      <p>This is my little workshop on the web, where I tinker with microcontrollers, electronics, and whatever random code rabbit hole I’ve fallen into that week.</p>
+      <p>Everything here has been built and tested by me — and yeah, that includes the ones that gave me grief before finally working. If it’s listed here, it works.</p>
+      <p>Still early days for the site, so you might find the occasional rough edge. I’m always tweaking, adding projects, and improving stuff when time allows.</p>
+      <p>Thanks for dropping by. I hope something here inspires you to go build, break, and rebuild something fun. ✨</p>
+      <p>Stay curious — and hack on ⚡</p>
+    </section>
+
+    <!-- Projects Tab -->
+    <section id="projects" class="tab-content">
+      <h2>Featured Project</h2>
+      <div class="project-card">
+        <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" />
+        <div class="project-info">
+          <h3>NodeMCU with Built-in OLED</h3>
+          <p>So this was a fun one — the NodeMCU ESP8266 board with a tiny OLED built right in. No extra wires, no breadboard clutter, just plug in and code.</p>
+          <p>The tricky part was figuring out the right I2C address. Once I had that, everything snapped into place. Here’s the working code I landed on:</p>
+
+          <div class="code-block">
+            <button class="copy-btn">Copy</button>
+<pre><code id="code-sample">
+// Scan I2C address first (run this once)
+#include &lt;Wire.h&gt;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(115200);
+  Serial.println("Scanning...");
+  
+  for (byte i = 1; i &lt; 127; i++) {
+    Wire.beginTransmission(i);
+    if (Wire.endTransmission() == 0) {
+      Serial.print("Found I2C device at 0x");
+      Serial.println(i, HEX);
+      delay(500);
+    }
+  }
+}
+
+void loop() {}
+
+// Then try the display
 #include &lt;Wire.h&gt;
 #include &lt;U8g2lib.h&gt;
 
-// NodeMCU I2C Pins
-#define SDA_PIN D2
-#define SCL_PIN D1
-
-// OLED setup (SSD1306, 128x64)
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, SCL_PIN, SDA_PIN);
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
 
 void setup() {
-  Serial.begin(115200);
-  Wire.begin(SDA_PIN, SCL_PIN);
-
-  // I2C scan (just in case)
-  Serial.println("Scanning I2C bus...");
-  byte error, address;
-  for (address = 1; address &lt; 127; address++) {
-    Wire.beginTransmission(address);
-    error = Wire.endTransmission();
-    if (error == 0) {
-      Serial.print("Device found at 0x");
-      if (address &lt; 16) Serial.print("0");
-      Serial.println(address, HEX);
-    }
-  }
-
   u8g2.begin();
 }
 
@@ -55,11 +123,53 @@ void loop() {
   u8g2.sendBuffer();
   delay(1000);
 }
-        </code></pre>
-      </div>
+</code></pre>
+          </div>
 
-      <p>⚠️ If you get a blank screen, check your I2C address in the Serial Monitor. Some displays default to <code>0x3C</code>, others to <code>0x3D</code>. This code helps figure that out before you tear your hair out.</p>
-      <p>Once it's talking, it's rock solid. Try changing the message or font for fun!</p>
-    </div>
-  </div>
-</section>
+          <p>If nothing shows up at first — run the I2C scanner (that top bit of code). It’ll tell you exactly what address your screen is on. From there, tweak the constructor if needed. After that, smooth sailing. 🛠️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Tab -->
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <div class="contact-info" style="text-align: center;">
+          <p>Want to get in touch?</p>
+          <p>Email me at: <span id="email-link"></span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p style="text-align: center;">&copy; 2025 HamHacks</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./scripts/matrix.js"></script>
+  <script src="./scripts/tabs.js"></script>
+  <script>
+    // Email obfuscation
+    const user = 'hamhacks';
+    const domain = 'hotmail.com';
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+      const email = `${user}@${domain}`;
+      emailLink.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+    }
+
+    // Copy button
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const code = button.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          button.textContent = "Copied!";
+          setTimeout(() => button.textContent = "Copy", 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
