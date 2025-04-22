@@ -1,0 +1,60 @@
+
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: #000;
+  color: #0f0;
+}
+
+canvas#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+header h1 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+header h1 a {
+  color: #0f0;
+  text-decoration: none;
+  text-shadow: 0 0 10px #0f0;
+  font-size: 2rem;
+}
+
+.tabs {
+  margin-top: 1rem;
+}
+
+.tab-button {
+  padding: 1em;
+  color: #0f0;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  margin: 0 1em;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.tab-content {
+  display: none;
+  padding: 2rem;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+img.logo {
+  display: block;
+  margin: 1em auto;
+  width: 150px;
+  filter: drop-shadow(0 0 8px #0f0);
+}
