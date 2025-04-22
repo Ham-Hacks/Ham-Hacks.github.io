@@ -21,29 +21,66 @@
   </header>
 
   <main>
+    <!-- Home Tab -->
     <section id="home" class="tab-content active">
       <h2>Welcome to HamHacks!</h2>
       <p>Homemade Hardware, Hacks and Code.</p>
     </section>
 
+    <!-- About Tab -->
     <section id="about" class="tab-content">
       <h2>About</h2>
       <p>Hey there 👋 — welcome to HamHacks!</p>
-
-<p>This site is my little corner of the web where I share my electronics and coding experiments, successes (and some near-disasters 😅), and generally just document what I’m learning as I go. I’m by no means an expert — just a curious tinkerer with a soldering iron, a bunch of jumper wires, and way too many browser tabs open.</p>
-<p></p>
-<p>All the projects you’ll find here are built, tested, and working. I’ve personally wired them up, flashed the code, and seen them come to life (sometimes after hours of frustration and head-scratching). If it’s on the site, it works — no errors - only fluff here.</p>
-<p></p>
-<p>That said, it’s still early days for HamHacks. The site is very much a work in progress, and I’m always tweaking things, fixing little bugs, and adding new stuff when time allows. If a page looks half-finished or a project doesn’t have a full write-up yet — hang tight, I’m on it!</p>
-<p></p>
-<p>Thanks for stopping by. Whether you’re just getting started or you’re years into the hobby, I hope you find something here that inspires you to build, break, and build again.</p>
-<p></p>     
-<p></p>
-<p>Stay curious — and hack on ⚡</p>
+      <p>This site is my little corner of the web where I share my electronics and coding experiments, successes (and some near-disasters 😅), and generally just document what I’m learning as I go. I’m by no means an expert — just a curious tinkerer with a soldering iron, a bunch of jumper wires, and way too many browser tabs open.</p>
+      <p>All the projects you’ll find here are built, tested, and working. I’ve personally wired them up, flashed the code, and seen them come to life (sometimes after hours of frustration and head-scratching). If it’s on the site, it works — no errors - only fluff here.</p>
+      <p>That said, it’s still early days for HamHacks. The site is very much a work in progress, and I’m always tweaking things, fixing little bugs, and adding new stuff when time allows.</p>
+      <p>Thanks for stopping by. Whether you’re just getting started or you’re years into the hobby, I hope you find something here that inspires you to build, break, and build again.</p>
+      <p>Stay curious — and hack on ⚡</p>
     </section>
 
+    <!-- Projects Tab -->
+    <section id="projects" class="tab-content">
+      <h2>Featured Project</h2>
+      <div class="project-card">
+        <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" />
+        <div class="project-info">
+          <h3>NodeMCU with Built-in OLED</h3>
+          <p>This little build uses a NodeMCU ESP8266 board with an integrated OLED — no wiring needed! It’s tidy for debugging, showing sensor data, or just experimenting with display output.</p>
+          <p>Here's how I got it going:</p>
+          <ol>
+            <li>Install the <code>U8g2</code> library in Arduino IDE.</li>
+            <li>Use the code below to get the display talking to the board.</li>
+            <li>Upload and watch your message pop up!</li>
+          </ol>
 
+          <div class="code-block">
+            <button class="copy-btn">Copy</button>
+            <pre><code id="code-sample">
+// Example code to get your display going
+#include <Wire.h>
+#include <U8g2lib.h>
 
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
+
+void setup() {
+  u8g2.begin();
+}
+
+void loop() {
+  u8g2.clearBuffer();
+  u8g2.setFont(u8g2_font_ncenB08_tr);
+  u8g2.drawStr(0,24,"Hello from HamHacks!");
+  u8g2.sendBuffer();
+  delay(1000);
+}
+            </code></pre>
+          </div>
+          <p>If the screen stays blank at first, double-check your I2C address and the board type — that tripped me up early on. Once it's set, it’s solid. Enjoy!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Tab -->
     <section id="contact" class="tab-content">
       <h2>Contact</h2>
       <div class="contact-card">
@@ -59,47 +96,9 @@
     <p>&copy; 2025 HamHacks</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="./scripts/matrix.js"></script>
-  <script src="./scripts/tabs.js"></script><section id="projects" class="tab-content">
-  <h2>Featured Project</h2>
-  <div class="project-card">
-    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" />
-    <div class="project-info">
-      <h3>NodeMCU with Built-in OLED</h3>
-      <p>
-        This little build uses a NodeMCU ESP8266 board with an integrated OLED — no wiring needed. It’s super tidy for debugging,
-        or even showing sensor readouts or custom messages. Perfect starter board if you're just dipping your toes into IoT or microcontrollers.
-      </p>
-      <p>
-        I used the <code>U8g2</code> library which makes writing to the screen really straightforward. The trickiest part? Getting the screen to respond! But hey — after a few rounds of trial and error, it fired up like a charm.
-      </p>
-      <pre><code>
-// Example code to get you going
-#include <Wire.h>
-#include <U8g2lib.h>
-
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-
-void setup() {
-  u8g2.begin();
-}
-
-void loop() {
-  u8g2.clearBuffer();
-  u8g2.setFont(u8g2_font_ncenB08_tr);
-  u8g2.drawStr(0,24,"Hello from HamHacks!");
-  u8g2.sendBuffer();
-  delay(1000);
-}
-      </code></pre>
-      <p>
-        Keep your connections clean and don’t forget: sometimes the SDA/SCL pins are swapped depending on the board version.
-        Been there, fixed that.
-      </p>
-    </div>
-  </div>
-</section>
-
+  <script src="./scripts/tabs.js"></script>
   <script>
     // Email obfuscation
     const user = 'hamhacks';
@@ -109,6 +108,17 @@ void loop() {
       const email = `${user}@${domain}`;
       emailLink.innerHTML = `<a href="mailto:${email}">${email}</a>`;
     }
+
+    // Copy button
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const code = button.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          button.textContent = "Copied!";
+          setTimeout(() => button.textContent = "Copy", 1500);
+        });
+      });
+    });
   </script>
 </body>
 </html>
