@@ -35,7 +35,7 @@ function drawMatrix() {
   animationId = requestAnimationFrame(drawMatrix);
 }
 
-function triggerMatrixRain(duration = 1000) {
+function triggerMatrixRain(duration = 1500) {
   if (active) return;
 
   active = true;
