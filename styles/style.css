@@ -99,29 +99,33 @@ main {
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
   background: rgba(26, 26, 26, 0.8);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 12px;
   border: 1px solid var(--primary);
   box-shadow: var(--glow);
-  max-width: 800px;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: left;
 }
 
 .project-card img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
   border-radius: 8px;
   box-shadow: var(--glow);
+  margin-bottom: 1rem;
 }
 
-.project-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+.project-info pre {
+  background: #0d0d0d;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--primary);
+  box-shadow: var(--glow);
+  color: var(--text);
 }
 
 
