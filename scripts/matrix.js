@@ -1,5 +1,3 @@
-// matrix.js
-
 let canvas = document.getElementById("matrix-canvas");
 let ctx = canvas.getContext("2d");
 
@@ -15,7 +13,7 @@ let chars = "アァイィウエカキクケコサシスセタチツテトナニ�
 chars = chars.split("");
 
 let fontSize = 14;
-let columns = canvas.width / fontSize;
+let columns = Math.floor(canvas.width / fontSize);
 let drops = Array.from({ length: columns }).fill(1);
 
 function drawMatrix() {
@@ -64,7 +62,7 @@ function stopMatrix() {
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  columns = canvas.width / fontSize;
+  columns = Math.floor(canvas.width / fontSize);
   drops = Array.from({ length: columns }).fill(1);
 });
 
