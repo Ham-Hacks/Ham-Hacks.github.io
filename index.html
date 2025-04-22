@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <h1><a href="#">HamHacks</a></h1>
+    <nav class="tabs">
+      <a href="#home" class="tab-button active" data-tab="home">Home</a>
+      <a href="#about" class="tab-button" data-tab="about">About</a>
+      <a href="#projects" class="tab-button" data-tab="projects">Projects</a>
+      <a href="#contact" class="tab-button" data-tab="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p>Homemade Hardware, Hacks and Code.</p>
+    </section>
+
+    
+<section id="about" class="tab-content">
+  <h2>About HamHacks</h2>
+  <p>
+    Welcome to <strong>HamHacks</strong> — a digital workshop for tinkerers, makers, and anyone who loves 
+    turning a mess of wires into something awesome.
+  </p>
+
+  <p>
+    This isn’t just another project dump. Everything here is personally tested and vouched for by me. 
+    The hardware works. The code runs. And if I’ve posted it, it’s because I’ve had fun building it — and I think you will too.
+  </p>
+
+  <p>
+    Whether you're blinking your first LED or diving into Wi-Fi automation with an ESP32, 
+    the goal here is simple: take the headache out of coding and give you more time doing what’s actually fun — 
+    building, tweaking, and making cool stuff.
+  </p>
+
+  <p>
+    So grab your Pi, crack open that dev board drawer, and let’s get hacking. If it’s in here, 
+    I’ve wired it, coded it, and probably fried a few components to get it working. You’re in good hands.
+  </p>
+</section>
+
+
+    
+<section id="projects" class="tab-content">
+  <h2>Projects</h2>
+  <button class="accordion">Arduino</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP8266</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP32</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  <button class="accordion">ESP32 CAM</button>
+  <div class="panel"><p>Coming soon...</p></div>
+
+  
+
+<button class="accordion">Raspberry Pi</button>
+<div class="panel">
+  <button class="accordion nested">Blinking an LED</button>
+  <div class="panel">
+    
+<h3>Blinking an LED using GPIO</h3>
+<img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;" />
+<p>
+  Alright, let's kick things off with the classic “Hello, World!” of hardware: blinking an LED. It's a rite of passage. 
+  You get your Pi wired up, fire off a little Python, and boom — that tiny light winks at you like, “Yep, we’re alive.”
+</p>
+<p>
+  You’ll need just a few basics to get going: a Raspberry Pi, a breadboard, an LED, a 330Ω resistor (or close to it), and some jumper wires. 
+  We’ll use GPIO pin 17 for this one — easy to remember, easy to find. Just refer to the pinout image above if you're unsure.
+</p>
+<p>
+  Now here's the code. It’s pretty simple — we just set up the pin as an output and toggle it on and off in a loop.
+</p>
+
+<pre><code id="code-snippet">import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)  # LED on
+        time.sleep(1)
+        GPIO.output(17, GPIO.LOW)   # LED off
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()</code></pre>
+
+<button onclick="copyCode()" style="margin-top: 0.5em;">Copy Code</button>
+
+<p>
+  When you run this, your LED should start blinking on and off once per second. If not, double-check your wiring — 
+  especially the resistor placement and whether the LED is facing the right way (long leg goes to GPIO!).
+</p>
+<p>
+  That’s it. Super simple, but super satisfying. From here, you can play around — speed up the blink rate, add more LEDs, 
+  or maybe try using a button to control it. This is where the fun really starts 🔧😄
+</p>
+
+  </div>
+</div>
+
+
+
+
+</section>
+
+
+
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p>Get in touch via email or social media. We’re always building!</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
+
+  <script src="./scripts/matrix.js"></script>
+  <script src="./scripts/tabs.js"></script>
+</body>
+</html>
+
+<script>
+  function copyCode() {
+    const code = document.getElementById('code-snippet').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Code copied to clipboard!");
+    });
+  }
+
+  const allAccordions = document.querySelectorAll('.accordion');
+  allAccordions.forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('active');
+      const panel = this.nextElementSibling;
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+      }
+    });
+  });
+</script>
