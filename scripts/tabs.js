@@ -1,18 +1,27 @@
 
-document.querySelectorAll(".tab-button").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+import { startMatrix } from './matrix.js';
 
-    button.classList.add("active");
-    const tabId = button.getAttribute("data-tab");
-    document.getElementById(tabId).classList.add("active");
+document.querySelectorAll('.tab-button').forEach(button => {
+  button.addEventListener('click', e => {
+    e.preventDefault();
+    const tabId = button.getAttribute('data-tab');
 
-    if (typeof startMatrixTemporarily === "function") {
-      startMatrixTemporarily();
-    }
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    document.querySelector(`#${tabId}`).classList.add('active');
+
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    button.classList.add('active');
+
+    // Trigger matrix rain effect briefly
+    startMatrix();
   });
 });
+
 
 // Email obfuscation
 const user = "hamhacks";
