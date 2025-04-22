@@ -73,20 +73,23 @@
       <p>Stay curious — and hack on ⚡</p>
     </section>
 
-    <!-- Projects Tab -->
-    <section id="projects" class="tab-content">
-      <h2>Featured Project</h2>
-      <div class="project-card">
-        <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" />
-        <div class="project-info">
-          <h3>NodeMCU with Built-in OLED</h3>
-          <p>So this was a fun one — the NodeMCU ESP8266 board with a tiny OLED built right in. No extra wires, no breadboard clutter, just plug in and code.</p>
-          <p>The tricky part was figuring out the right I2C address. Once I had that, everything snapped into place. Here’s the working code I landed on:</p>
+<!-- Projects Tab -->
+<section id="projects" class="tab-content">
+  <h2>Projects</h2>
 
-          <div class="code-block">
-            <button class="copy-btn">Copy</button>
+  <!-- Featured Project -->
+  <h3>⭐ Featured Project</h3>
+  <div class="project-card">
+    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" />
+    <div class="project-info">
+      <h4>NodeMCU with Built-in OLED</h4>
+      <p>So this was a fun one — the NodeMCU ESP8266 board with a tiny OLED built right in. No extra wires, no breadboard clutter, just plug in and code.</p>
+      <p>The tricky part was figuring out the right I2C address. Once I had that, everything snapped into place. Here’s the working code I landed on:</p>
+
+      <div class="code-block">
+        <button class="copy-btn">Copy</button>
 <pre><code id="code-sample">
-// Scan I2C address first (run this once)
+// Scan I2C address first
 #include &lt;Wire.h&gt;
 
 void setup() {
@@ -103,11 +106,14 @@ void setup() {
     }
   }
 }
+  
+  
 
 void loop() {}
 
-// Then try the display
-#include &lt;Wire.h&gt;
+  ////////////////////////////////////////////////////////////////////////////////
+
+// Then run this:
 #include &lt;U8g2lib.h&gt;
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);
@@ -124,12 +130,31 @@ void loop() {
   delay(1000);
 }
 </code></pre>
-          </div>
-
-          <p>If nothing shows up at first — run the I2C scanner (that top bit of code). It’ll tell you exactly what address your screen is on. From there, tweak the constructor if needed. After that, smooth sailing. 🛠️</p>
-        </div>
       </div>
-    </section>
+
+      <p>If nothing shows up — run the I2C scanner (top bit). It’ll tell you exactly what address your screen is on. From there, tweak the display code. Done ✅</p>
+    </div>
+  </div>
+
+  <!-- Subcategories -->
+  <h3>🔩 Arduino</h3>
+  <p style="text-align: center;">Projects using the classic Arduino boards. From UNO to Nano and a few oddball clones in between.</p>
+
+  <h3>📡 ESP8266</h3>
+  <p style="text-align: center;">WiFi-ready and battle-tested — these projects are built on the little powerhouse that is the ESP8266.</p>
+
+  <h3>🚀 ESP32</h3>
+  <p style="text-align: center;">Dual-core, Bluetooth, WiFi, and enough horsepower for wild stuff. These are the ESP32 builds I’ve done.</p>
+
+  <h3>📷 ESP32-CAM</h3>
+  <p style="text-align: center;">Camera-enabled ESP32 projects. Includes motion detection, livestreams, and spy-cam vibes.</p>
+
+  <h3>📞 LilyGo T-Call</h3>
+  <p style="text-align: center;">ESP32 with a SIM800L GSM module built-in — great for SMS, calls, and IoT in the wild.</p>
+
+  <h3>📶 LilyGo A7670SA</h3>
+  <p style="text-align: center;">Cellular-ready boards with 4G Cat-1 and GNSS — next-level connectivity and tracking stuff lives here.</p>
+</section>
 
     <!-- Contact Tab -->
     <section id="contact" class="tab-content">
