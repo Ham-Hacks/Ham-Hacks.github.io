@@ -115,16 +115,19 @@
     <section id="projects" class="tab-content">
       <h2>Projects</h2>
 
-      <!-- Featured Project -->
-      <h3>⭐ Featured Project</h3>
-      <div class="project-card">
-        <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" style="max-width: 400px;" />
-        <div class="project-info">
-          <h4>NodeMCU with Built-in OLED</h4>
-          <p>ESP8266 board + built-in OLED = tidy setup with zero wiring.</p>
+      <!-- Collapsible Project Sections -->
+      <div class="project-section">
 
-          <div class="code-block">
-            <button class="copy-btn">Copy</button>
+        <button class="collapsible">⭐ Featured Project</button>
+        <div class="content">
+          <div class="project-card">
+            <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" style="max-width: 400px;" />
+            <div class="project-info">
+              <h4>NodeMCU with Built-in OLED</h4>
+              <p>ESP8266 board + built-in OLED = tidy setup with zero wiring.</p>
+
+              <div class="code-block">
+                <button class="copy-btn">Copy</button>
 <pre><code>
 // I2C Scanner
 #include &lt;Wire.h&gt;
@@ -163,13 +166,12 @@ void loop() {
   delay(1000);
 }
 </code></pre>
+              </div>
+              <p>If nothing shows up — run the I2C scanner (top bit). It'll help you tweak the constructor if needed. Done ✅</p>
+            </div>
           </div>
-          <p>If nothing shows up — run the I2C scanner (top bit). It'll help you tweak the constructor if needed. Done ✅</p>
         </div>
-      </div>
 
-      <!-- Collapsible Subsections -->
-      <div class="project-section">
         <button class="collapsible">🔩 Arduino</button>
         <div class="content"><p>Projects using UNO, Nano, and weird clones. Coming soon!</p></div>
 
@@ -230,7 +232,7 @@ void loop() {
       });
     });
 
-    // Toggle collapsible sections
+    // Collapsible sections
     document.querySelectorAll(".collapsible").forEach(button => {
       button.addEventListener("click", () => {
         const content = button.nextElementSibling;
