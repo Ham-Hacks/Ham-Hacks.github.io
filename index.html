@@ -6,8 +6,7 @@
   <title>HamHacks</title>
   <link rel="stylesheet" href="./styles/style.css" />
   <style>
-    /* Add this in case it's not in your CSS yet */
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       text-align: center;
     }
 
@@ -37,7 +36,46 @@
       display: block;
       margin: 1em auto;
       max-width: 100%;
+      height: auto;
       border-radius: 10px;
+    }
+
+    .collapsible {
+      background-color: #222;
+      color: #0f0;
+      cursor: pointer;
+      padding: 1em;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1.2em;
+      margin-top: 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .collapsible:hover {
+      background-color: #333;
+    }
+
+    .collapsible.active {
+      background-color: #444;
+    }
+
+    .content {
+      padding: 0 1em;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background-color: #111;
+      border-radius: 0 0 8px 8px;
+      color: #ccc;
+    }
+
+    .project-section {
+      max-width: 800px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -72,20 +110,21 @@
       <p>Thanks for dropping by. I hope something here inspires you to go build, break, and rebuild something fun. ✨</p>
       <p>Stay curious — and hack on ⚡</p>
     </section>
-<!-- Projects Tab -->
-<section id="projects" class="tab-content">
-  <h2>Projects</h2>
 
-  <!-- Featured Project -->
-  <h3>⭐ Featured Project</h3>
-  <div class="project-card">
-    <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" style="max-width: 400px; width: 90%; height: auto;" />
-    <div class="project-info">
-      <h4>NodeMCU with Built-in OLED</h4>
-      <p>ESP8266 board + built-in OLED = tidy setup with zero wiring.</p>
+    <!-- Projects Tab -->
+    <section id="projects" class="tab-content">
+      <h2>Projects</h2>
 
-      <div class="code-block">
-        <button class="copy-btn">Copy</button>
+      <!-- Featured Project -->
+      <h3>⭐ Featured Project</h3>
+      <div class="project-card">
+        <img src="./images/NodeMCU_Built_in_oled.jpeg" alt="NodeMCU with OLED" class="project-image" style="max-width: 400px;" />
+        <div class="project-info">
+          <h4>NodeMCU with Built-in OLED</h4>
+          <p>ESP8266 board + built-in OLED = tidy setup with zero wiring.</p>
+
+          <div class="code-block">
+            <button class="copy-btn">Copy</button>
 <pre><code>
 // I2C Scanner
 #include &lt;Wire.h&gt;
@@ -105,7 +144,7 @@ void setup() {
 }
 
 void loop() {}
-  ///////////////////////////////////////
+///////////////////////////////////////
 
 // Display
 #include &lt;U8g2lib.h&gt;
@@ -124,33 +163,32 @@ void loop() {
   delay(1000);
 }
 </code></pre>
+          </div>
+          <p>If nothing shows up — run the I2C scanner (top bit). It'll help you tweak the constructor if needed. Done ✅</p>
+        </div>
       </div>
-      <p>If nothing shows up — run the I2C scanner (top bit). It'll help you tweak the constructor if needed. Done ✅</p>
-    </div>
-  </div>
 
-  <!-- Collapsible Subsections -->
-  <div class="project-section">
-    <button class="collapsible">🔩 Arduino</button>
-    <div class="content"><p>Projects using UNO, Nano, and weird clones. Coming soon!</p></div>
+      <!-- Collapsible Subsections -->
+      <div class="project-section">
+        <button class="collapsible">🔩 Arduino</button>
+        <div class="content"><p>Projects using UNO, Nano, and weird clones. Coming soon!</p></div>
 
-    <button class="collapsible">📡 ESP8266</button>
-    <div class="content"><p>WiFi on a budget. ESP8266 builds and hacks live here.</p></div>
+        <button class="collapsible">📡 ESP8266</button>
+        <div class="content"><p>WiFi on a budget. ESP8266 builds and hacks live here.</p></div>
 
-    <button class="collapsible">🚀 ESP32</button>
-    <div class="content"><p>Bluetooth, WiFi, dual core. Some juicy microcontroller projects!</p></div>
+        <button class="collapsible">🚀 ESP32</button>
+        <div class="content"><p>Bluetooth, WiFi, dual core. Some juicy microcontroller projects!</p></div>
 
-    <button class="collapsible">📷 ESP32-CAM</button>
-    <div class="content"><p>Motion detection, livestreaming — camera-based builds go here.</p></div>
+        <button class="collapsible">📷 ESP32-CAM</button>
+        <div class="content"><p>Motion detection, livestreaming — camera-based builds go here.</p></div>
 
-    <button class="collapsible">📞 LilyGo T-Call</button>
-    <div class="content"><p>GSM SIM800L builds. Think remote SMS alerts and IoT comms.</p></div>
+        <button class="collapsible">📞 LilyGo T-Call</button>
+        <div class="content"><p>GSM SIM800L builds. Think remote SMS alerts and IoT comms.</p></div>
 
-    <button class="collapsible">📶 LilyGo A7670SA</button>
-    <div class="content"><p>Cellular + GNSS boards. Real-world connected projects.</p></div>
-  </div>
-</section>
-
+        <button class="collapsible">📶 LilyGo A7670SA</button>
+        <div class="content"><p>Cellular + GNSS boards. Real-world connected projects.</p></div>
+      </div>
+    </section>
 
     <!-- Contact Tab -->
     <section id="contact" class="tab-content">
@@ -189,6 +227,19 @@ void loop() {
           button.textContent = "Copied!";
           setTimeout(() => button.textContent = "Copy", 1500);
         });
+      });
+    });
+
+    // Toggle collapsible sections
+    document.querySelectorAll(".collapsible").forEach(button => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling;
+        button.classList.toggle("active");
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
       });
     });
   </script>
