@@ -97,36 +97,68 @@ main {
 }
 
 .project-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(26, 26, 26, 0.8);
-  padding: 2rem;
+  background: #111;
+  color: #ddd;
+  padding: 1em;
   border-radius: 12px;
-  border: 1px solid var(--primary);
-  box-shadow: var(--glow);
-  max-width: 700px;
-  margin: 2rem auto;
+  margin-top: 1em;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 15px rgba(0,255,0,0.1);
+}
+
+.project-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1em auto;
+  border-radius: 10px;
+}
+
+.project-info {
   text-align: left;
 }
 
-.project-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: var(--glow);
-  margin-bottom: 1rem;
+.code-block {
+  position: relative;
+  background: #000;
+  color: #0f0;
+  padding: 1em;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1em 0;
 }
 
-.project-info pre {
-  background: #0d0d0d;
-  padding: 1rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  border: 1px solid var(--primary);
-  box-shadow: var(--glow);
-  color: var(--text);
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #0f0;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
 }
+
+.copy-btn:hover {
+  background: #3f3;
+}
+
+/* Responsive improvements */
+@media (max-width: 600px) {
+  .project-card {
+    padding: 1em;
+  }
+
+  .tabs a {
+    font-size: 0.9em;
+    padding: 0.5em;
+  }
+}
+
 
 
 footer {
