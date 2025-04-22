@@ -7,7 +7,7 @@ let active = false;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const letters = "アァイィウヴエェオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const fontSize = 14;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = new Array(columns).fill(1);
