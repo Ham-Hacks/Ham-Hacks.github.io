@@ -122,13 +122,38 @@ main {
 
 .code-block {
   position: relative;
-  background: #000;
-  color: #0f0;
-  padding: 1em;
-  border-radius: 10px;
+  background-color: #111;
+  padding: 1rem;
+  border-radius: 8px;
   overflow-x: auto;
-  margin: 1em 0;
+  margin-top: 1rem;
+  color: #0f0;
+  font-family: monospace;
 }
+
+.code-block pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copy-btn:hover {
+  background-color: #6f6;
+}
+
 
 .copy-btn {
   position: absolute;
