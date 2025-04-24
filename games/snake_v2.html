@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamSnake</title>
+  <style>
+    :root {
+      --grid-size: 20;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      height: 100vh;
+    }
+
+    h1 {
+      margin: 0.5em 0;
+    }
+
+    #score {
+      margin-bottom: 0.5em;
+    }
+
+    #game {
+      display: grid;
+      grid-template-columns: repeat(var(--grid-size), 1fr);
+      width: 95vmin;
+      height: 95vmin;
+      border: 2px solid #333;
+    }
+
+    .cell {
+      width: 100%;
+      height: 100%;
+      background: #222;
+      box-sizing: border-box;
+    }
+
+    .snake {
+      background: limegreen;
+    }
+
+    .head {
+      background: none;
+      position: relative;
+    }
+
+    .head img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .food {
+      background: red;
+    }
+
+    button {
+      margin-top: 1em;
+      background: #00f0ff;
+      border: none;
+      padding: 0.5em 1.2em;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐍 HamSnake</h1>
+  <div id="score">Score: 0</div>
+  <div id="game"></div>
+  <button onclick="toggleGame()">Start / Pause</button>
+
+  <script>
+    const gridSize = 20;
+    const game = document.getElementById("game");
+    const scoreEl = document.getElementById("score");
+    let snake = [{ x: 10, y: 10 }];
+    let direction = { x: 1, y: 0 };
+    let food = randomCell();
+    let interval = null;
+    let score = 0;
+
+    function randomCell() {
+      return {
+        x: Math.floor(Math.random() * gridSize),
+        y: Math.floor(Math.random() * gridSize),
+      };
+    }
+
+    function draw() {
+      game.innerHTML = "";
+      for (let y = 0; y < gridSize; y++) {
+        for (let x = 0; x < gridSize; x++) {
+          const cell = document.createElement("div");
+          cell.classList.add("cell");
+
+          const isHead = snake[0].x === x && snake[0].y === y;
+          const isBody = snake.slice(1).some(seg => seg.x === x && seg.y === y);
+          const isFood = food.x === x && food.y === y;
+
+          if (isHead) {
+            cell.classList.add("head");
+            const img = document.createElement("img");
+            img.src = "logo.png"; // make sure this is in the same folder
+            cell.appendChild(img);
+          } else if (isBody) {
+            cell.classList.add("snake");
+          } else if (isFood) {
+            cell.classList.add("food");
+          }
+
+          game.appendChild(cell);
+        }
+      }
+    }
+
+    function move() {
+      const head = {
+        x: (snake[0].x + direction.x + gridSize) % gridSize,
+        y: (snake[0].y + direction.y + gridSize) % gridSize,
+      };
+
+      if (snake.some(seg => seg.x === head.x && seg.y === head.y)) {
+        stopGame();
+        alert("Game over!");
+        return;
+      }
+
+      snake.unshift(head);
+
+      if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        scoreEl.textContent = "Score: " + score;
+        food = randomCell();
+      } else {
+        snake.pop();
+      }
+
+      draw();
+    }
+
+    function toggleGame() {
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      } else {
+        interval = setInterval(move, 150);
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp" && direction.y !== 1) direction = { x: 0, y: -1 };
+      if (e.key === "ArrowDown" && direction.y !== -1) direction = { x: 0, y: 1 };
+      if (e.key === "ArrowLeft" && direction.x !== 1) direction = { x: -1, y: 0 };
+      if (e.key === "ArrowRight" && direction.x !== -1) direction = { x: 1, y: 0 };
+    });
+
+    draw();
+  </script>
+</body>
+</html>
