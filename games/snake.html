@@ -123,6 +123,14 @@
     <button onclick="window.location.href='https://www.hamhacks.co.uk'">🏠 Home</button>
   </div>
 
+  <div id="directional-controls">
+  <button id="up-btn" onclick="setDirection(0, -1)">⬆️</button>
+  <div>
+    <button id="left-btn" onclick="setDirection(-1, 0)">⬅️</button>
+    <button id="right-btn" onclick="setDirection(1, 0)">➡️</button>
+  </div>
+  <button id="down-btn" onclick="setDirection(0, 1)">⬇️</button>
+</div>
   <audio id="eat-sound" src="https://freesound.org/data/previews/82/82921_1022651-lq.mp3"></audio>
 
   <script>
