@@ -273,6 +273,14 @@
       muted = !muted;
       muteBtn.textContent = muted ? '🔇 Unmute' : '🔊 Mute';
     }
+    function setDirection(x, y) {
+  // Prevent reversing direction
+  if ((x === 1 && direction.x === -1) || (x === -1 && direction.x === 1) ||
+      (y === 1 && direction.y === -1) || (y === -1 && direction.y === 1)) {
+    return;
+  }
+  direction = { x, y };
+}
 
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowUp' && direction.y !== 1) direction = { x: 0, y: -1 };
