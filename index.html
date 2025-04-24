@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <h1><a href="#">HamHacks</a></h1>
+    <nav class="tabs">
+      <a href="#home" class="tab-button active" data-tab="home">Home</a>
+      <a href="#about" class="tab-button" data-tab="about">About</a>
+      <a href="#projects" class="tab-button" data-tab="projects">Projects</a>
+      <a href="#links" class="tab-button" data-tab="links">Links</a>
+      <a href="#contact" class="tab-button" data-tab="contact">Contact</a>
+      <a href="#games" class="tab-button" data-tab="games">Games</a>
+      <a href="#video" class="tab-button" data-tab="video">Video</a>
+      <!-- Add more Tabs here -->
+
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p>Homemade Hardware, Hacks and Code.</p>
+    </section>
+
+    <section id="about" class="tab-content">
+      <h2>About HamHacks</h2>
+      <p><strong>HamHacks</strong> is a small UK-based collective focused on IoT, electronics, automation, and creative tech hacking. We're a hands-on team of builders who believe making should be fun, fast, and frustration-free.</p>
+      <p>Everything featured on this site is tried, tested, and tweaked until it just works. Whether you're blinking your first LED or automating your entire shed, our goal is to make it plug-and-play—no guesswork, just great builds.</p>
+      <p>We’re also working on a range of development kits, coming soon! They’ll include all the components you need to get started in minutes—available either pre-coded or as blank slates for your own experiments.</p>
+      <p>The site is still under construction (pardon the dust!), and we’re always looking for contributors. Got an idea, a fix, or just want to say hi? Head to the <a href="#contact">contact section</a>—we’d love to hear from you.</p>
+    </section>
+    
+
+    <section id="projects" class="tab-content">
+      <h2>Projects</h2>
+
+      <button class="accordion">Arduino</button>
+      <div class="panel"><p>Coming soon...</p></div>
+
+      <button class="accordion">ESP8266</button>
+      <div class="panel"><p>Coming soon...</p></div>
+
+      <button class="accordion">ESP32</button>
+      <div class="panel"><p>Coming soon...</p></div>
+
+      <button class="accordion">ESP32 CAM</button>
+      <div class="panel"><p>Coming soon...</p></div>
+
+      <button class="accordion">Raspberry Pi</button>
+      <div class="panel">
+        <button class="accordion nested">Blinking an LED</button>
+        <div class="panel">
+          <h3>Blinking an LED using GPIO</h3>
+          <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; border-radius: 10px; margin-bottom: 1em;" />
+          <p>Here's your classic “Hello, World!” in hardware: blinking an LED with a Raspberry Pi.</p>
+          <pre><code id="code-snippet">import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)
+        time.sleep(1)
+        GPIO.output(17, GPIO.LOW)
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()</code></pre>
+          <button onclick="copyCode()">Copy Code</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="links" class="tab-content">
+      <h2>Useful Links</h2>
+      <ul>
+        <li><a href="https://github.com" target="_blank">GitHub</a></li>
+        <!-- Add more cool resources here -->
+      </ul>
+    </section>
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p>Call 999 or Frank if you're here at 3AM.</p>
+      <p>Or scan the QR code to message me direct.</p>
+      <img src="C:\Users\hamha\Desktop\Ham-Hacks TEST SITE\Ham-Hacks.github.io-main\images\email_qr.png" alt="Contact QR" width="200" height="200" style="display: block; margin: 0 auto;">
+      <!-- This is the image i added. path may need changing when online -->
+
+    </section>
+
+    <section id="games" class="tab-content">
+      <h2>Games</h2>
+      <ul>
+        <!-- <li><a href="./games/minesweeper.html">Minesweeper</a></li>-->
+        <!--<li><a href="./games/password_cracker.html">Password Cracker</a></li>-->
+        <li><a href="./games/snake.html">Snake</a></li>
+        <!--<li><a href="./games/type_racer.html">Type Racer</a></li>-->
+      </ul>
+    </section>
+
+    <section id="video" class="tab-content">
+      <h2>Featured Video</h2>
+      <div id="video-container" style="position: relative; width: 100%; max-width: 800px; margin: auto;">
+        <div id="video-thumbnail" style="cursor: pointer; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000;">
+          <img src="./images/logo.png" alt="Play Video" 
+               style="position: absolute; top: 40%; left: 50%; width: 140px; transform: translate(-50%, -50%); z-index: 2; cursor: pointer;" />
+          <div style="position: absolute; top: 60%; left: 50%; transform: translateX(-50%); color: white; font-size: 1.2em; text-align: center; z-index: 2;">
+            Click the logo to start video
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
+  <script src="./scripts/matrix.js"></script>
+  <script src="./scripts/tabs.js"></script>
+
+  <div id="game-over" style="
+  display: none;
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #ff69b4;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999;
+  text-shadow: 1px 1px 4px #000;
+">
+  <div>💀 Hammered by HamHacks!</div>
+  <div id="final-score" style="font-size: 1.2em; margin-top: 0.5em;"></div>
+  <button onclick="resetGame()" style="
+    margin-top: 1em;
+    background: hotpink;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  ">Try Again</button>
+</div>
+
+  <script>
+    function copyCode() {
+      const code = document.getElementById('code-snippet').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Code copied to clipboard!");
+      });
+    }
+  
+    // Video click event — correctly placed outside of copyCode()
+    document.getElementById('video-thumbnail').addEventListener('click', function () {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/cC9r0jHF-Fw?autoplay=1&controls=0';
+      iframe.title = 'YouTube video';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.position = 'absolute';
+      iframe.style.top = '0';
+      iframe.style.left = '0';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+  
+      const container = document.getElementById('video-thumbnail');
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    });
+  
+    document.querySelectorAll('.accordion').forEach(btn => {
+      btn.addEventListener('click', function () {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+  
+</body>
+</html>
