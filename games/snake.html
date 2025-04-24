@@ -36,16 +36,16 @@
     /* Reduced game grid size for smaller screen */
     #game {
       display: grid;
-      grid-template-columns: repeat(15, 20px); /* 15 columns instead of 20 */
-      grid-template-rows: repeat(15, 20px);    /* 15 rows instead of 20 */
+      grid-template-columns: repeat(15, 25px); /* 15 columns with slightly larger cells */
+      grid-template-rows: repeat(15, 25px);    /* 15 rows with slightly larger cells */
       gap: 1px;
       background: #111;
       margin-top: 1rem;
     }
 
     .cell {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       background: #222;
     }
 
@@ -107,15 +107,22 @@
 
     /* Directional controls layout */
     #directional-controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr; /* Three columns for left, up, right */
-      gap: 0.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center the buttons horizontally */
       margin-top: 1em;
+      gap: 0.5em;
+    }
+
+    #directional-controls .row {
+      display: flex;
+      justify-content: center; /* Center the buttons in each row */
+      gap: 1em; /* Add space between buttons */
     }
 
     #directional-controls button {
-      width: 60px; /* Increased size for better touch usability */
-      height: 60px; /* Increased size for better touch usability */
+      width: 70px; /* Increased size for better touch usability */
+      height: 70px;
       font-size: 1.5em; /* Larger text size */
       background: linear-gradient(to right, #00f0ff, #ff00ff);
       border: none;
@@ -128,10 +135,6 @@
 
     #directional-controls button:hover {
       opacity: 0.9;
-    }
-
-    #directional-controls .spacer {
-      visibility: hidden; /* Invisible spacer for layout alignment */
     }
   </style>
 </head>
@@ -158,13 +161,14 @@
 
   <!-- Directional controls for movement -->
   <div id="directional-controls">
-    <button id="up-btn" onclick="setDirection(0, -1)">⬆️</button> <!-- Up -->
-    <button class="spacer"></button> <!-- Spacer -->
-    <div>
-      <button id="left-btn" onclick="setDirection(-1, 0)">⬅️</button> <!-- Left -->
-      <button id="right-btn" onclick="setDirection(1, 0)">➡️</button> <!-- Right -->
+    <div class="row">
+      <button id="up-btn" onclick="setDirection(0, -1)">⬆️</button>
     </div>
-    <button id="down-btn" onclick="setDirection(0, 1)">⬇️</button> <!-- Down -->
+    <div class="row">
+      <button id="left-btn" onclick="setDirection(-1, 0)">⬅️</button>
+      <button id="down-btn" onclick="setDirection(0, 1)">⬇️</button>
+      <button id="right-btn" onclick="setDirection(1, 0)">➡️</button>
+    </div>
   </div>
 
   <audio id="eat-sound" src="https://freesound.org/data/previews/82/82921_1022651-lq.mp3"></audio>
@@ -209,6 +213,8 @@
     }
 
     // Remaining game logic stays unchanged...
+    createGrid();
+    draw();
   </script>
 </body>
 </html>
