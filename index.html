@@ -112,6 +112,7 @@
           <h3>Blinking an LED using GPIO</h3>
           <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;" />
           <p>This is the “Hello World” of hardware — and it never gets old.</p>
+         <div style="display: flex; justify-content: center;">
           <pre><code id="code-snippet">import RPi.GPIO as GPIO
 import time
 
@@ -126,6 +127,7 @@ try:
         time.sleep(1)
 except KeyboardInterrupt:
     GPIO.cleanup()</code></pre>
+    </div>
           <button onclick="copyCode()" style="margin-top: 0.5em;">Copy Code</button>
           <p>
             Boom — your LED blinks. Double-check your wiring if it doesn’t.
