@@ -17,6 +17,13 @@
       font-size: 0.95em;
     }
 
+    .code-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+    }
+
     .accordion {
       cursor: pointer;
       padding: 1em;
@@ -112,8 +119,10 @@
           <h3>Blinking an LED using GPIO</h3>
           <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;" />
           <p>This is the “Hello World” of hardware — and it never gets old.</p>
-         <div style="display: flex; justify-content: center;">
-          <pre><code id="code-snippet">import RPi.GPIO as GPIO
+          
+          <!-- Code block with spacing -->
+          <div class="code-container">
+            <pre><code id="code-snippet">import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
@@ -127,11 +136,10 @@ try:
         time.sleep(1)
 except KeyboardInterrupt:
     GPIO.cleanup()</code></pre>
-    </div>
+          </div>
+
           <button onclick="copyCode()" style="margin-top: 0.5em;">Copy Code</button>
-          <p>
-            Boom — your LED blinks. Double-check your wiring if it doesn’t.
-          </p>
+          <p>Boom — your LED blinks. Double-check your wiring if it doesn’t.</p>
         </div>
       </div>
     </section>
@@ -172,11 +180,7 @@ except KeyboardInterrupt:
       btn.addEventListener('click', function () {
         this.classList.toggle('active');
         const panel = this.nextElementSibling;
-        if (panel.style.display === 'block') {
-          panel.style.display = 'none';
-        } else {
-          panel.style.display = 'block';
-        }
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
       });
     });
   </script>
