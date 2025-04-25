@@ -1,163 +1,144 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-:root {
-  --primary: #00ffe7;
-  --secondary: #00f7ff;
-  --background: #0d0d0d;
-  --text: #d1f2ff;
-  --light: #1a1a1a;
-  --glow: 0 0 5px #00ffe7, 0 0 10px #00ffe7, 0 0 20px #00ffe7;
-  --font-main: 'Share Tech Mono', monospace;
-}
-
-* {
-  box-sizing: border-box;
-}
-
+/* General Styles */
 body {
-  font-family: var(--font-main);
+  background-color: #181818;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
   margin: 0;
-  background-color: var(--background);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-  background-image: radial-gradient(#0d0d0d 60%, #000000 100%);
-  animation: fadeInBody 1s ease-in;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: url('/images/logo.png') no-repeat center center;
-  background-size: contain;
-  opacity: 0.05;
-  z-index: 0;
-  pointer-events: none;
-  animation: pulseLogo 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px var(--primary));
-}
-
-@keyframes pulseLogo {
-  0%, 100% {
-    opacity: 0.04;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.12;
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
-
-@keyframes fadeInBody {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-header {
-  background: rgba(26, 26, 26, 0.9);
-  color: var(--primary);
-  padding: 1rem 2rem;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--glow);
-  border-bottom: 2px solid var(--primary);
-  z-index: 1;
-  position: relative;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Centering the main content */
+main {
+  flex: 1; /* Allow the main content to take available space */
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
 }
 
 header h1 a {
-  display: block;
-  width: 150px;
-  height: 150px;
-  background: url('/images/logo.png') no-repeat center center;
-  background-size: contain;
-  text-indent: -9999px;
-}
-
-nav.tabs a {
-  color: var(--text);
   text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  background-color: #1a1a1a;
-  box-shadow: 0 0 8px #00ffe755;
+  color: #f0f0f0;
+}
+
+nav.tabs {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: #444;
+  color: #f0f0f0;
+  text-decoration: none;
+  border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-left: 1rem;
 }
 
-nav.tabs a:hover,
-nav.tabs a.active {
-  background-color: var(--primary);
-  color: #000;
-  text-shadow: none;
-  box-shadow: var(--glow);
+.tab-button:hover {
+  background-color: #555;
 }
 
-main {
-  padding: 2rem;
-  z-index: 1;
-  position: relative;
+.tab-button.active {
+  background-color: #666;
 }
 
+/* Tab content Styles */
 .tab-content {
   display: none;
+  text-align: center;
 }
 
 .tab-content.active {
   display: block;
-  animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Accordion Styles */
 .accordion {
-  background-color: var(--light);
-  color: var(--text);
-  cursor: pointer;
-  padding: 14px;
-  width: 100%;
+  background-color: #444;
+  color: #f0f0f0;
+  padding: 10px;
   text-align: left;
   border: none;
   outline: none;
-  transition: 0.3s ease;
+  cursor: pointer;
   margin-top: 10px;
-  font-size: 1.2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 8px #00ffe744;
+  width: 100%;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.accordion:hover,
-.accordion.active {
-  background-color: var(--secondary);
-  color: #000;
-}
-
-.dark-panel {
-  background-color: #111;
-  color: #f0f0f0;
-  padding: 1em;
-  border: 1px solid #333;
+.accordion:hover {
+  background-color: #555;
 }
 
 .panel {
-  padding: 1rem;
-  background-color: #111;
   display: none;
-  overflow: hidden;
-  border-radius: 0 0 8px 8px;
-  margin-bottom: 10px;
-  border-left: 2px solid var(--primary);
-  animation: fadeIn 0.3s ease-in;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 5px;
 }
 
-.project-image {
-  max-width: 100%;
+.panel.active {
+  display: block;
+}
+
+/* Dark panels for sections like Arduino, ESP32 */
+.dark-panel {
+  background-color: #222;
+  border-radius: 5px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #f0f0f0;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  font-size: 0.8rem;
+}
+
+/* Centralize sub-headings */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Make lists and links appear neat */
+ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  background-color: #444;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #555;
+}
