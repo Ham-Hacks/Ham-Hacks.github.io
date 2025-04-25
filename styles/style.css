@@ -189,3 +189,9 @@ footer {
   border-radius: 0 0 8px 8px;
   margin-bottom: 10px;
 }
+.code-container {
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 1em; /* top, right/left, bottom spacing */
+}
+
