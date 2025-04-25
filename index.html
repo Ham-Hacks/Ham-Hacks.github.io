@@ -5,53 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HamHacks</title>
   <link rel="stylesheet" href="./styles/style.css" />
-  <style>
-    pre code {
-      background-color: #0f0f0f;
-      color: #00ff88;
-      padding: 1em;
-      border-radius: 8px;
-      display: block;
-      white-space: pre-wrap;
-      font-family: monospace;
-      font-size: 0.95em;
-    }
-
-    .code-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5em;
-      margin-bottom: 1em;
-    }
-
-    .accordion {
-      cursor: pointer;
-      padding: 1em;
-      width: 100%;
-      text-align: left;
-      border: none;
-      outline: none;
-      transition: background-color 0.3s ease;
-      background-color: #222;
-      color: #fff;
-      border-bottom: 1px solid #444;
-    }
-
-    .accordion.active, .accordion:hover {
-      background-color: #333;
-    }
-
-    .panel {
-      display: none;
-      background-color: #111;
-      padding: 0 1em 1em;
-      border-left: 2px solid #00ff88;
-    }
-
-    .nested {
-      margin-left: 1em;
-    }
-  </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
@@ -117,10 +70,8 @@
         <button class="accordion nested">Blinking an LED</button>
         <div class="panel">
           <h3>Blinking an LED using GPIO</h3>
-          <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 1em;" />
+          <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" class="project-image" />
           <p>This is the “Hello World” of hardware — and it never gets old.</p>
-          
-          <!-- Code block with spacing -->
           <div class="code-container">
             <pre><code id="code-snippet">import RPi.GPIO as GPIO
 import time
@@ -137,8 +88,7 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()</code></pre>
           </div>
-
-          <button onclick="copyCode()" style="margin-top: 0.5em;">Copy Code</button>
+          <button onclick="copyCode()">Copy Code</button>
           <p>Boom — your LED blinks. Double-check your wiring if it doesn’t.</p>
         </div>
       </div>
@@ -167,22 +117,6 @@ except KeyboardInterrupt:
 
   <script src="./scripts/matrix.js"></script>
   <script src="./scripts/tabs.js"></script>
-  <script>
-    function copyCode() {
-      const code = document.getElementById('code-snippet').textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        alert("Code copied to clipboard!");
-      });
-    }
-
-    const allAccordions = document.querySelectorAll('.accordion');
-    allAccordions.forEach(btn => {
-      btn.addEventListener('click', function () {
-        this.classList.toggle('active');
-        const panel = this.nextElementSibling;
-        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-      });
-    });
-  </script>
+  <script src="./scripts/main.js"></script>
 </body>
 </html>
