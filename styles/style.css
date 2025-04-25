@@ -141,6 +141,13 @@ main {
   color: #000;
 }
 
+.dark-panel {
+  background-color: #111;
+  color: #f0f0f0;
+  padding: 1em;
+  border: 1px solid #333;
+}
+
 .panel {
   padding: 1rem;
   background-color: #111;
