@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HamHacks</title>
   <link rel="stylesheet" href="./styles/style.css" />
+  <style>
+    /* Add basic styles to make the tabs work */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .tab-button.active {
+      font-weight: bold;
+    }
+    .accordion {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 5px;
+    }
+    .panel {
+      display: none;
+      padding-left: 20px;
+    }
+    .accordion.active + .panel {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
@@ -183,8 +212,36 @@ except KeyboardInterrupt:
     <p>&copy; 2025 HamHacks</p>
   </footer>
 
-  <script src="./scripts/matrix.js"></script>
-  <script src="./scripts/tabs.js"></script>
-  <script src="./scripts/main.js"></script>
+  <script>
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', function() {
+        // Hide all tab content
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        // Remove active class from all tab buttons
+        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+        
+        // Show the clicked tab content
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+        
+        // Mark this button as active
+        this.classList.add('active');
+      });
+    });
+
+    // Accordion functionality
+    document.querySelectorAll('.accordion').forEach(accordion => {
+      accordion.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        if (panel.style.display === 'block') {
+          panel.style.display = 'none';
+        } else {
+          panel.style.display = 'block';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
