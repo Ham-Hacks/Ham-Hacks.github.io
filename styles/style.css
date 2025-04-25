@@ -105,6 +105,27 @@ main {
   position: relative;
   z-index: 1;
 }
+.tabs {
+  background-color: #222;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.tabs a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #444;
+  transition: background-color 0.2s ease;
+}
+
+.tabs a:hover,
+.tabs a.active {
+  background-color: #666;
+}
+
 
 .tab-content {
   display: none;
