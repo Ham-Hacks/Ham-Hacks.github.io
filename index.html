@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HamHacks</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <header>
+    <h1><a href="#">HamHacks</a></h1>
+    <nav class="tabs">
+      <a href="#home" class="tab-button active" data-tab="home">Home</a>
+      <a href="#about" class="tab-button" data-tab="about">About</a>
+      <a href="#projects" class="tab-button" data-tab="projects">Projects</a>
+      <a href="#contact" class="tab-button" data-tab="contact">Contact</a>
+      <a href="#games" class="tab-button" data-tab="games">Games</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="tab-content active">
+      <h2>Welcome to HamHacks!</h2>
+      <p>Homemade Hardware, Hacks and Code.</p>
+    </section>
+
+    <section id="about" class="tab-content">
+      <h2>About HamHacks</h2>
+      <p>
+        Welcome to <strong>HamHacks</strong> — a digital workshop for tinkerers, makers, and anyone who loves 
+        turning a mess of wires into something awesome.
+      </p>
+      <p>
+        This isn’t just another project dump. Everything here is personally tested and vouched for by me. 
+        The hardware works. The code runs. And if I’ve posted it, it’s because I’ve had fun building it — and I think you will too.
+      </p>
+      <p>
+        Whether you're blinking your first LED or diving into Wi-Fi automation with an ESP32, 
+        the goal here is simple: take the headache out of coding and give you more time doing what’s actually fun — 
+        building, tweaking, and making cool stuff.
+      </p>
+      <p>
+        So grab your Pi, crack open that dev board drawer, and let’s get hacking. If it’s in here, 
+        I’ve wired it, coded it, and probably fried a few components to get it working. You’re in good hands.
+      </p>
+    </section>
+
+    <section id="projects" class="tab-content">
+      <h2>Projects</h2>
+
+      <!-- Arduino Section -->
+      <button class="accordion">Arduino</button>
+      <div class="panel">
+        <button class="accordion nested">Where it all begins..</button>
+        <div class="panel">
+          <h3>Where It All Begins… Welcome to Arduino</h3>
+          <img src="./images/arduino.jpg" alt="Arduino Board" style="width: 50%; height: auto; display: block; margin: 1em auto; border-radius: 10px;" />
+          <p>If you’ve ever wanted to breathe life into wires and code—<strong>Arduino</strong> is where the magic starts.</p>
+          <p>Arduino is like the <em>gateway drug</em> to the world of microcontrollers...</p>
+          <h4>🧠 What Is a Microcontroller, Anyway?</h4>
+          <p>Imagine a tiny brain with one job: listen to the world, make decisions, and control stuff...</p>
+          <p>The Arduino is a development board that makes working with these little brains super friendly. You get:</p>
+          <ul>
+            <li>A microcontroller chip (like the ATmega328P on the Arduino Uno)</li>
+            <li>Power regulation</li>
+            <li>A USB connector for programming</li>
+            <li>Useful pin headers to plug stuff into (LEDs, buttons, sensors, buzzers—you name it)</li>
+          </ul>
+          <h4>🛠️ Why Arduino Rocks (Especially for Beginners)</h4>
+          <p>Arduino made embedded programming <em>accessible</em>. Here's what sets it apart:</p>
+          <ul>
+            <li><strong>Simple IDE</strong>: Write code, hit upload, and see your project come to life.</li>
+            <li><strong>Huge community</strong>: Tutorials, forums, example projects—if you can Google it, someone’s probably already built it.</li>
+            <li><strong>Plug-and-play hardware</strong>: Most sensors and modules just work. Hook them up, use a library, done.</li>
+          </ul>
+          <h4>⚡️ The First Spark: Blink</h4>
+          <p>Let’s be honest: the first thing everyone builds is an LED that blinks. And it's oddly satisfying.</p>
+          <pre><code>
+void setup() {
+  pinMode(13, OUTPUT);
+}
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+          </code></pre>
+          <h4>🔌 What Can You Do With It?</h4>
+          <ul>
+            <li><strong>Home automation</strong></li>
+            <li><strong>Robotics</strong></li>
+            <li><strong>Wearables</strong></li>
+            <li><strong>IoT</strong></li>
+          </ul>
+          <h4>🧩 The Building Blocks</h4>
+          <ul>
+            <li><strong>Digital vs Analog</strong></li>
+            <li><strong>PWM</strong></li>
+            <li><strong>Serial Communication</strong></li>
+            <li><strong>Libraries</strong></li>
+          </ul>
+          <h4>🛣️ Where This Path Leads</h4>
+          <ul>
+            <li><strong>ESP32/ESP8266</strong></li>
+            <li><strong>Raspberry Pi</strong></li>
+            <li><strong>Custom PCBs</strong></li>
+          </ul>
+          <h4>🎯 Final Thoughts</h4>
+          <p>Starting with Arduino is like opening the door to an invisible world...</p>
+        </div>
+
+        <button class="accordion nested">Blink LED Tutorial: Your First Digital Superpower</button>
+<div class="panel">
+  <h3>🔆 Blink LED: Your First Digital Superpower</h3>
+  <p>What if I told you this tiny piece of code is where empires of electronics begin?</p>
+
+  <p>The <strong>Blink sketch</strong> is your "Hello, World!" for hardware. It’s your first handshake with a microcontroller—your first command—and watching an LED blink by your own code is like watching fire spark from stone.</p>
+
+  <h4>🚦 What's Really Happening?</h4>
+  <p>You’re telling your microcontroller to send HIGH and LOW signals (i.e., 5V or 0V) to a pin. When that pin is connected to an LED, it lights up.</p>
+
+  <pre><code>
+void setup() {
+  pinMode(13, OUTPUT); // Set digital pin 13 as an output
+}
+
+void loop() {
+  digitalWrite(13, HIGH); // Turn the LED on
+  delay(1000);            // Wait 1 second
+  digitalWrite(13, LOW);  // Turn the LED off
+  delay(1000);            // Wait 1 second
+}
+  </code></pre>
+
+  <button onclick="copyCodeBlink()">Copy Code</button>
+
+  <h4>🧠 Microcontroller Basics in Disguise</h4>
+  <ul>
+    <li><strong>pinMode()</strong>: You're configuring a pin as OUTPUT — this sets up a one-way street for voltage.</li>
+    <li><strong>digitalWrite()</strong>: You flip the voltage on/off. That's digital logic: HIGH = 1, LOW = 0.</li>
+    <li><strong>delay()</strong>: You're telling the program to pause, giving your eyes time to see the blink.</li>
+  </ul>
+
+  <h4>🔌 Where You Can Go From Here</h4>
+  <ul>
+    <li>⏱ Make the LED blink faster or slower (change the <code>delay()</code>)</li>
+    <li>🌈 Use <code>analogWrite()</code> with PWM to make it fade instead of blink</li>
+    <li>🎛 Add a button to control the blink (introduce <code>digitalRead()</code>)</li>
+    <li>🌐 Make it blink via Wi-Fi using an ESP8266 or ESP32</li>
+    <li>📟 Build a heartbeat monitor — visualize sensor data through blinking!</li>
+  </ul>
+
+  <h4>🎯 Final Thoughts</h4>
+  <p>This is more than a blinking light — it’s a milestone. You’re controlling electricity with logic. From here, you’re not just using technology — you’re building it.</p>
+
+  <blockquote>
+    <em>Today it blinks. Tomorrow, it automates your home, flies your drone, or monitors a plant on Mars. Keep going.</em>
+  </blockquote>
+</div>
+
+      </div>
+
+      <!-- ESP8266 Section -->
+      <button class="accordion">ESP8266</button>
+      <div class="panel">
+        <button class="accordion nested">Intro to ESP8266</button>
+        <div class="panel">
+          <p>ESP8266 content coming soon...</p>
+        </div>
+      </div>
+
+      <!-- ESP32 Section -->
+      <button class="accordion">ESP32</button>
+      <div class="panel">
+        <button class="accordion nested">Intro to ESP32</button>
+        <div class="panel">
+          <p>ESP32 content coming soon...</p>
+        </div>
+      </div>
+
+      <!-- ESP32-CAM Section -->
+      <button class="accordion">ESP32 CAM</button>
+      <div class="panel">
+        <button class="accordion nested">Intro to ESP32-CAM</button>
+        <div class="panel">
+          <p>ESP32-CAM content coming soon...</p>
+        </div>
+      </div>
+
+      <!-- Raspberry Pi Section -->
+      <button class="accordion">Raspberry Pi</button>
+      <div class="panel">
+        <button class="accordion nested">Blinking an LED</button>
+        <div class="panel">
+          <h3>Blinking an LED using GPIO</h3>
+          <img src="./images/rpi4-pinout.jpeg" alt="Raspberry Pi 4 Pinout" style="max-width: 100%; height: auto; border-radius: 10px;" />
+          <pre><code id="code-snippet">import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+
+try:
+    while True:
+        GPIO.output(17, GPIO.HIGH)  # LED on
+        time.sleep(1)
+        GPIO.output(17, GPIO.LOW)   # LED off
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()</code></pre>
+          <button onclick="copyCode()">Copy Code</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="tab-content">
+      <h2>Contact</h2>
+      <p>Get in touch via email or social media. We’re always building!</p>
+    </section>
+
+    <section id="Links" class="tab-content">
+      <h2>Useful Links</h2>
+      <p>Sites I use and trust.</p>
+      <p><a href="https://github.com/">GitHub, the daddy</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HamHacks</p>
+  </footer>
+
+  <script src="./scripts/matrix.js"></script>
+  <script src="./scripts/tabs.js"></script>
+  <script>
+    function copyCode() {
+      const code = document.getElementById('code-snippet').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Code copied to clipboard!");
+      });
+    }
+
+    function copyCodeBlink() {
+      const code = `void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}`;
+      navigator.clipboard.writeText(code).then(() => {
+        alert("Blink sketch copied to clipboard!");
+      });
+    }
+
+    const allAccordions = document.querySelectorAll('.accordion');
+    allAccordions.forEach(btn => {
+      btn.addEventListener('click', function () {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>
